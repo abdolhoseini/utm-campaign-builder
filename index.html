@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UTM Campaign Link Builder</title>
+    <meta
+      name="description"
+      content="A simple tool for creating campaign tracking links with UTM parameters."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="app-card" aria-labelledby="app-title">
+        <header class="app-header">
+          <p class="eyebrow">Marketing Toolkit</p>
+          <h1 id="app-title">UTM Campaign Link Builder</h1>
+        </header>
+
+        <form id="utm-form" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="website-url">Website URL <span aria-label="required">*</span></label>
+              <input
+                id="website-url"
+                name="website-url"
+                type="url"
+                placeholder="https://example.com/landing-page"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="utm-source">Campaign Source <span aria-label="required">*</span></label>
+              <input
+                id="utm-source"
+                name="utm-source"
+                type="text"
+                placeholder="google, newsletter, social"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="utm-medium">Campaign Medium <span aria-label="required">*</span></label>
+              <input
+                id="utm-medium"
+                name="utm-medium"
+                type="text"
+                placeholder="cpc, email, social"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="utm-campaign">Campaign Name <span aria-label="required">*</span></label>
+              <input
+                id="utm-campaign"
+                name="utm-campaign"
+                type="text"
+                placeholder="spring_sale_2026"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="utm-term">Campaign Term</label>
+              <input
+                id="utm-term"
+                name="utm-term"
+                type="text"
+                placeholder="optional keyword"
+              />
+            </div>
+
+            <div class="field">
+              <label for="utm-content">Campaign Content</label>
+              <input
+                id="utm-content"
+                name="utm-content"
+                type="text"
+                placeholder="optional headline or ad variation"
+              />
+            </div>
+          </div>
+
+          <div class="actions" aria-label="Form actions">
+            <button type="submit" class="primary-btn">Generate Link</button>
+            <button type="button" id="copy-button" class="secondary-btn" disabled>
+              Copy Link
+            </button>
+            <button type="button" id="reset-button" class="ghost-btn">Reset</button>
+          </div>
+        </form>
+
+        <div id="message" class="message" aria-live="polite" role="status"></div>
+
+        <section class="result-panel" aria-labelledby="result-title">
+          <h2 id="result-title">Generated URL</h2>
+          <div class="result-box">
+            <output id="generated-url" for="utm-form">Your campaign URL will appear here.</output>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
