@@ -102,6 +102,31 @@
             <output id="generated-url" for="utm-form">Your campaign URL will appear here.</output>
           </div>
         </section>
+
+        <section class="history-section" aria-labelledby="history-title">
+          <div class="history-heading">
+            <div>
+              <h2 id="history-title">Campaign History</h2>
+              <p>Saved locally in this browser.</p>
+            </div>
+            <div class="history-actions">
+              <button type="button" id="export-button" class="secondary-btn">Export CSV</button>
+              <button type="button" id="clear-history-button" class="danger-btn">Clear History</button>
+            </div>
+          </div>
+
+          <div class="field history-search">
+            <label for="history-search">Search history</label>
+            <input
+              id="history-search"
+              type="search"
+              placeholder="Search by name, source, or medium"
+            />
+          </div>
+
+          <p id="history-empty" class="empty-state">No saved campaigns yet.</p>
+          <div id="history-list" class="history-list" aria-live="polite"></div>
+        </section>
       </section>
     </main>
 

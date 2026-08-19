@@ -1,4 +1,4 @@
-# UTM Campaign Link Builder
+# UTM Campaign Link Builder v1.1
 
 This project is a beginner-friendly web app for creating marketing campaign links with UTM parameters.
 
@@ -25,6 +25,27 @@ This helps a business measure campaign performance and improve future marketing 
 - Allows the user to reset the form
 - Works on desktop and mobile screens
 - Uses semantic HTML and accessible labels
+
+## Version 1.1 features
+
+- Saves every successfully generated, unique campaign in browser history
+- Shows newest campaigns first in a responsive card layout
+- Searches history by campaign name, source, or medium
+- Copies or deletes individual saved campaigns
+- Exports the complete campaign history as CSV
+- Clears all history after confirmation
+- Shows clear empty and no-search-results states
+- Prevents duplicate records for the same generated URL
+
+## Local storage and privacy
+
+Campaign history is stored in the browser's `localStorage` under the key `utmCampaignHistory`. The data remains available after a refresh, but it is specific to the current browser and site origin. Clearing browser storage removes it.
+
+All campaign data stays locally in the user's browser. This application does not send campaign details to a server, database, analytics service, or external API.
+
+## CSV export
+
+The Export CSV button downloads all saved campaigns, including optional fields and creation timestamps. Every value is wrapped in double quotes, and double quotes inside values are doubled so spreadsheet applications can read commas, quotes, and line breaks correctly. A UTF-8 byte-order mark is included for broad spreadsheet compatibility.
 
 ## Technologies used
 
@@ -57,18 +78,19 @@ http://localhost:8000
 ## Current limitations
 
 - This is a front-end-only project without a backend or database.
-- It does not save campaign links or history.
+- History is limited to the current browser and site origin; it does not sync across devices or browsers.
+- Browser storage can be cleared by the user or browser settings, so it is not a permanent backup.
+- CSV files are exported manually and cannot be imported into the app.
 - It does not integrate with analytics tools or external APIs.
 - It only validates basic URL format and required fields.
 
-## Planned future improvements
+## Future roadmap
 
-- Add downloadable campaign history
 - Add a dark mode option
 - Add a preview of the campaign parameters before generation
 - Add validation rules for campaign naming recommendations
-- Add a simple copy confirmation animation
 - Add support for more advanced tracking fields
+- Add optional CSV import and history backup
 
 ## Notes
 
