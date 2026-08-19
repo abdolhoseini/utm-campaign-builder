@@ -1,97 +1,88 @@
-# UTM Campaign Link Builder v1.1
+# UTM Campaign Link Builder
 
-This project is a beginner-friendly web app for creating marketing campaign links with UTM parameters.
+A responsive, browser-based tool for creating consistent, trackable marketing URLs with UTM parameters.
 
-## Business purpose of UTM parameters
+**[View the live demo](https://abdolhoseini.github.io/utm-campaign-builder/)**
 
-UTM parameters are tags added to a website URL so marketers can see where traffic comes from. When someone clicks a campaign link, the additional tracking information helps answer questions like:
+![UTM Campaign Link Builder application preview](assets/app-preview.png)
 
-- Which platform sent the visit?
-- Was it from email, social media, or paid search?
-- Which campaign or ad version performed best?
-- Which keyword or content variation drove action?
+## Purpose
 
-This helps a business measure campaign performance and improve future marketing decisions.
+Marketing links often need campaign details added by hand. This can lead to missing parameters, inconsistent naming, and incorrectly formatted URLs that make traffic attribution harder.
 
-## Project features
+UTM Campaign Link Builder validates the destination URL, adds the campaign parameters safely, and preserves existing query parameters. It creates links that analytics platforms can recognize, but it does **not** collect, process, or report analytics itself.
 
-- Validates website URLs before generating a link
-- Requires all important campaign fields to be filled in
-- Preserves any existing query parameters already present in the original URL
-- Uses JavaScript `URL` and `URLSearchParams` to build tracking links correctly
-- Encodes parameter values safely
-- Displays a clear success or error message
-- Lets the user copy the generated link
-- Allows the user to reset the form
-- Works on desktop and mobile screens
-- Uses semantic HTML and accessible labels
+## Features
 
-## Version 1.1 features
-
-- Saves every successfully generated, unique campaign in browser history
-- Shows newest campaigns first in a responsive card layout
+- Validates website URLs and required campaign fields
+- Preserves existing URL query parameters
+- Generates correctly encoded UTM campaign links
+- Copies generated and previously saved links to the clipboard
+- Stores unique campaign history locally in the browser
 - Searches history by campaign name, source, or medium
-- Copies or deletes individual saved campaigns
-- Exports the complete campaign history as CSV
-- Clears all history after confirmation
-- Shows clear empty and no-search-results states
-- Prevents duplicate records for the same generated URL
+- Deletes individual campaigns or clears all history after confirmation
+- Exports the complete campaign history as a correctly escaped CSV file
+- Prevents duplicate history records for the same generated URL
+- Provides a responsive layout and accessible form labels
 
-## Local storage and privacy
+## Campaign History
 
-Campaign history is stored in the browser's `localStorage` under the key `utmCampaignHistory`. The data remains available after a refresh, but it is specific to the current browser and site origin. Clearing browser storage removes it.
+Every successfully generated campaign is saved in browser `localStorage` and displayed newest first. Each record contains the original website URL, all UTM values, the generated URL, and its creation date and time. History remains available after refreshing the page unless browser storage is cleared.
 
-All campaign data stays locally in the user's browser. This application does not send campaign details to a server, database, analytics service, or external API.
+![Saved campaign history with search and export controls](assets/campaign-history.png)
 
-## CSV export
+## UTM Parameters
 
-The Export CSV button downloads all saved campaigns, including optional fields and creation timestamps. Every value is wrapped in double quotes, and double quotes inside values are doubled so spreadsheet applications can read commas, quotes, and line breaks correctly. A UTF-8 byte-order mark is included for broad spreadsheet compatibility.
+| Parameter | Purpose | Example |
+| --- | --- | --- |
+| `utm_source` | Identifies where traffic originated | `google`, `newsletter` |
+| `utm_medium` | Identifies the marketing channel | `cpc`, `email` |
+| `utm_campaign` | Identifies the campaign | `spring_sale_2026` |
+| `utm_term` | Optionally identifies a keyword | `running_shoes` |
+| `utm_content` | Optionally distinguishes content or ads | `blue_banner` |
 
-## Technologies used
+## Technology Stack
 
-- HTML for the structure
-- CSS for the clean marketing-tool layout
-- Vanilla JavaScript for validation and URL generation
+- Semantic HTML5
+- CSS3 with responsive layouts
+- Vanilla JavaScript
+- Browser `URL`, `URLSearchParams`, Clipboard, `localStorage`, Blob, and download APIs
 
-## How to run the application
+No frameworks, third-party packages, backend, database, or external APIs are used.
 
-1. Open the project folder in a browser.
-2. Double-click `index.html` or use a local static web server.
-3. Fill in the required fields.
-4. Click the Generate Link button.
-5. Copy the result or reset the form when needed.
+## Privacy
 
-### Optional local server command
+Campaign history stays on the user's device in browser `localStorage`. The application does not transmit campaign data or collect analytics. Saved history is specific to the current browser and site origin, does not sync between devices, and can be removed through Clear History or the browser's storage settings.
 
-If you want to run it from a local server, you can use:
+## How to Run Locally
+
+Clone or download the project, then either open `index.html` directly or serve the folder with a local static server:
 
 ```bash
 python -m http.server 8000
 ```
 
-Then open:
+Open `http://localhost:8000` in a browser.
 
-```text
-http://localhost:8000
-```
+## Manual Testing
 
-## Current limitations
+1. Submit empty required fields and confirm the validation messages appear.
+2. Test invalid URLs and valid `http://` or `https://` URLs.
+3. Generate a link from a URL that already has query parameters and confirm they remain.
+4. Confirm required and optional UTM parameters are encoded correctly.
+5. Generate the same link twice and confirm only one history record exists.
+6. Refresh the page and confirm campaign history remains available.
+7. Search by campaign name, source, and medium.
+8. Test generated-link copy, history copy, individual delete, CSV export, and clear-history confirmation.
+9. Check the layout on desktop and mobile screen sizes.
 
-- This is a front-end-only project without a backend or database.
-- History is limited to the current browser and site origin; it does not sync across devices or browsers.
-- Browser storage can be cleared by the user or browser settings, so it is not a permanent backup.
-- CSV files are exported manually and cannot be imported into the app.
-- It does not integrate with analytics tools or external APIs.
-- It only validates basic URL format and required fields.
+## Future Improvements
 
-## Future roadmap
+- Optional CSV import and history backup
+- Additional campaign naming guidance
+- Support for more advanced tracking fields
+- Dark mode
 
-- Add a dark mode option
-- Add a preview of the campaign parameters before generation
-- Add validation rules for campaign naming recommendations
-- Add support for more advanced tracking fields
-- Add optional CSV import and history backup
+## License
 
-## Notes
-
-This project is intentionally simple and designed as a first portfolio project to demonstrate front-end web fundamentals.
+This project is available under the terms in the [LICENSE](LICENSE) file.
